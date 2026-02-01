@@ -4,5 +4,8 @@
 	"private": true,
 	"files": [
 		"biome.json"
-	]
+	],
+	"dependencies": {
+		"@biomejs/biome": "^2.3.13"
+	}
 }

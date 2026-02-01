@@ -5,7 +5,10 @@
   "private": true,
   "exports": {
     ".": "./shared-styles.css",
-    "./postcss": "./postcss.config.js"
+    "./postcss": {
+      "types": "./postcss.d.ts",
+      "default": "./postcss.config.js"
+    }
   },
   "devDependencies": {
     "postcss": "^8.5.3",
