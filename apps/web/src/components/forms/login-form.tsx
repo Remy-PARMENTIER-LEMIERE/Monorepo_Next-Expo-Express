@@ -51,7 +51,7 @@ export default function LoginForm() {
 				href="/auth/forgot-password"
 				className="text-sm italic text-foreground hover:underline underline-offset-2"
 			>
-				Mot de passe oublié ?
+				Forgot your password?
 			</Link>
 			<button type="submit" disabled={isPending}>
 				Login

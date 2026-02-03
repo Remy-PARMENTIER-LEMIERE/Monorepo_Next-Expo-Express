@@ -3,6 +3,7 @@ import { prisma } from "@repo/database";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { hashPassword, verifyPassword } from "./argon2";
+import { ForgotPasswordEmail } from "./emails/email-forgot-password";
 import { VerificationEmail } from "./emails/email-verification";
 import { resend } from "./resend";
 
@@ -26,6 +27,17 @@ export const auth = betterAuth({
 		password: {
 			hash: hashPassword,
 			verify: verifyPassword,
+		},
+		async sendResetPassword({ user, url }) {
+			await resend.emails.send({
+				from: `${process.env.APP_NAME} <${process.env.NODE_ENV === "development" ? "notifications@resend.dev" : process.env.NOTIFICATIONS_EMAIL}>`,
+				to:
+					process.env.NODE_ENV === "development"
+						? "delivered@resend.dev"
+						: user.email,
+				subject: "Reset your password",
+				react: <ForgotPasswordEmail url={url} />,
+			});
 		},
 	},
 	emailVerification: {

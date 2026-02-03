@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { startTransition, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
@@ -34,12 +34,7 @@ export default function ForgotPasswordForm() {
 					toast.error("Failed to send password reset email. Please try again.");
 				},
 				onSuccess: () => {
-					startTransition(() => {
-						toast.success(
-							"If an account with that email exists, a password reset link has been sent.",
-						);
-						router.push("/auth/forgot-password/success");
-					});
+					router.push("/auth/forgot-password/success");
 				},
 			},
 		});
