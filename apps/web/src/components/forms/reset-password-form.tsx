@@ -4,14 +4,14 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
-export default function ResetPasswordForm({ token }: { token?: string }) {
+export default function ResetPasswordForm({ token }: { token: string }) {
 	const [isPending, setIsPending] = useState(false);
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const formData = new FormData(event.currentTarget);
-		const newPassword = formData.get("new-password");
-		const confirmPassword = formData.get("confirm-password");
+		const newPassword = formData.get("new-password") as string;
+		const confirmPassword = formData.get("confirm-password") as string;
 
 		if (newPassword !== confirmPassword) {
 			toast.error("Passwords do not match.");
@@ -19,8 +19,8 @@ export default function ResetPasswordForm({ token }: { token?: string }) {
 		}
 
 		await authClient.resetPassword({
-			token: token as string,
-			newPassword: newPassword as string,
+			token,
+			newPassword,
 			fetchOptions: {
 				onRequest: () => {
 					setIsPending(true);

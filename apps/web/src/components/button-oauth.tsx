@@ -53,11 +53,19 @@ export default function ButtonOAuth({
 		return provider.charAt(0).toUpperCase() + provider.slice(1);
 	};
 
+	const clientBaseUrl =
+		process.env.NEXT_PUBLIC_CLIENT_URL ??
+		(typeof window !== "undefined" ? window.location.origin : "");
+	const callbackURL = clientBaseUrl ? `${clientBaseUrl}/` : "/";
+	const errorCallbackURL = clientBaseUrl
+		? `${clientBaseUrl}/auth/login/error`
+		: "/auth/login/error";
+
 	const handleOAuthSign = async (sign: "in" | "up") => {
 		await authClient.signIn.social({
 			provider,
-			callbackURL: "/",
-			errorCallbackURL: "/auth/login/error",
+			callbackURL,
+			errorCallbackURL,
 			fetchOptions: {
 				onRequest: () => {
 					setIsPending(true);
