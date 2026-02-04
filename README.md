@@ -1,58 +1,75 @@
-# Turborepo Tailwind CSS starter
+# Monorepo Turborepo + Tailwind (base de projet)
 
-This Turborepo starter is maintained by the Turborepo core team.
+Ce dépôt fournit une base prête à l’emploi pour démarrer une application moderne en monorepo avec Turborepo, Next.js, Tailwind CSS et TypeScript. La structure est pensée pour partager du code UI, des configs et des utilitaires entre plusieurs apps.
 
-## Using this example
+## Démarrage rapide
 
-Run the following command:
+Ce monorepo est basé sur le template officiel Turborepo. Pour créer un projet similaire :
 
 ```sh
 npx create-turbo@latest -e with-tailwind
 ```
 
-## What's inside?
+## Contenu du monorepo
 
-This Turborepo includes the following packages/apps:
+### Apps
 
-### Apps and Packages
+- `apps/web`: application [Next.js](https://nextjs.org/) (front principal)
+- `apps/docs`: application [Next.js](https://nextjs.org/) (documentation)
+- `apps/api`: API Express + auth (backend)
+- `apps/mobile`: app React Native / Expo
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Packages partagés
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- `packages/ui`: bibliothèque de composants React partagée
+- `packages/database`: Prisma + client partagé
+- `packages/tailwind-config`: config Tailwind partagée
+- `packages/typescript-config`: `tsconfig` partagés
+- `packages/biome-config`: configuration [Biome](https://biomejs.dev/) (lint + format)
 
-### Building packages/ui
+Chaque app/package est en TypeScript.
 
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.ts`. This was chosen for several reasons:
+## Lint & format : Biome (remplace ESLint/Prettier)
 
-- Make sharing one `tailwind.config.ts` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
+Ce monorepo utilise **Biome** pour le linting et le formatage. Les anciennes références ESLint/Prettier du template ont été remplacées par la configuration Biome.
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.ts` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
+- Config partagée : [packages/biome-config/biome.json](packages/biome-config/biome.json)
+- Config par app : voir `apps/*/biome.json`
 
-For example, in [tailwind.config.ts](packages/tailwind-config/tailwind.config.ts):
+## UI package (packages/ui)
+
+Le package `ui` expose des composants consommés par les apps Next.js via `transpilePackages` (dans `next.config.ts`).
+
+Si tu préfères consommer `packages/ui` **sans build**, assure‑toi que le `tailwind.config.ts` des apps inclut le chemin vers les fichiers du package. Exemple :
 
 ```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+content: [
+  "src/**/*.{js,ts,jsx,tsx}",
+  "../../packages/ui/*.{js,ts,jsx,tsx}",
+]
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+## Variables d’environnement
 
-### Utilities
+Des fichiers `.env.sample` sont fournis pour chaque app. Copie‑les en `.env` et renseigne les valeurs selon ton environnement.
 
-This Turborepo has some additional tools already setup for you:
+- Web : [apps/web/.env.sample](apps/web/.env.sample)
+- API : [apps/api/.env.sample](apps/api/.env.sample)
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### Où obtenir les variables ?
+
+- `DATABASE_URL` : ton fournisseur Postgres (Render, Neon, Supabase, Railway, etc.)
+- `RESEND_API_KEY` : tableau de bord Resend
+- `OAUTH_GOOGLE_CLIENT_ID` / `OAUTH_GOOGLE_CLIENT_SECRET` : console Google Cloud OAuth
+- `APP_SECRET` / `BETTER_AUTH_SECRET` : à générer (ex. `openssl rand -hex 32`)
+- `APP_URL`, `CLIENT_URL`, `NEXT_PUBLIC_*` : URLs publiques de l’API et du web
+
+> Ne commit jamais les `.env` réels en production. Utilise le gestionnaire de secrets de ta plateforme de déploiement.
+
+## Outils inclus
+
+- [Turborepo](https://turbo.build/) pour l’orchestration des builds
+- [Next.js](https://nextjs.org/) pour les apps web/docs
+- [Tailwind CSS](https://tailwindcss.com/) pour le style
+- [TypeScript](https://www.typescriptlang.org/) pour le typage
+- [Biome](https://biomejs.dev/) pour lint + format
