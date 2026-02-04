@@ -2,14 +2,6 @@
 
 Ce dépôt fournit une base prête à l’emploi pour démarrer une application moderne en monorepo avec Turborepo, Next.js, Tailwind CSS et TypeScript. La structure est pensée pour partager du code UI, des configs et des utilitaires entre plusieurs apps.
 
-## Démarrage rapide
-
-Ce monorepo est basé sur le template officiel Turborepo. Pour créer un projet similaire :
-
-```sh
-npx create-turbo@latest -e with-tailwind
-```
-
 ## Contenu du monorepo
 
 ### Apps
