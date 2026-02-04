@@ -8,9 +8,9 @@ export default async function ResetPasswordPage({
 	const params = await searchParams;
 	if (!params.token) {
 		return (
-			<main className="px-8 py-16 container mx-auto max-w-5xl space-y-8">
-				<h1 className="text-3xl font-bold">Reset password</h1>
-				<section className="space-y-8">
+			<main className="flex flex-col items-center justify-between min-h-screen p-24">
+				<h1 className="text-4xl font-bold">Reset password</h1>
+				<section className="flex-1 flex flex-col gap-4 items-center justify-center">
 					<p className="text-foreground">
 						Unauthorized access. Please use the link provided in your email to
 						reset your password.
@@ -21,9 +21,9 @@ export default async function ResetPasswordPage({
 	}
 
 	return (
-		<main className="px-8 py-16 container mx-auto max-w-5xl space-y-8">
-			<h1 className="text-3xl font-bold">Reset password</h1>
-			<section className="space-y-8">
+		<main className="flex flex-col items-center justify-between min-h-screen p-24">
+			<h1 className="text-4xl font-bold">Reset password</h1>
+			<section className="flex-1 flex flex-col gap-4 items-center justify-center">
 				<p className="text-foreground">
 					Please enter your new password below to reset your account password.
 				</p>

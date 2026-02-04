@@ -40,14 +40,28 @@ export default function LoginForm() {
 	};
 
 	return (
-		<form onSubmit={login}>
-			<div>
-				<label htmlFor="email">Email:</label>
-				<input type="email" id="email" name="email" />
+		<form onSubmit={login} className="flex flex-col gap-4">
+			<div className="flex flex-col gap-2">
+				<label htmlFor="email" className="cursor-pointer">
+					Email:
+				</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<div>
-				<label htmlFor="password">Password:</label>
-				<input type="password" id="password" name="password" />
+			<div className="flex flex-col gap-2">
+				<label htmlFor="password" className="cursor-pointer">
+					Password:
+				</label>
+				<input
+					type="password"
+					id="password"
+					name="password"
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
 			<Link
 				href="/auth/forgot-password"
@@ -55,7 +69,11 @@ export default function LoginForm() {
 			>
 				Forgot your password?
 			</Link>
-			<button type="submit" disabled={isPending}>
+			<button
+				type="submit"
+				disabled={isPending}
+				className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700 block"
+			>
 				Login
 			</button>
 		</form>

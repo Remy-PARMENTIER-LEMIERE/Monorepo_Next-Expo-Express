@@ -4,16 +4,16 @@ export default function Page() {
 	return (
 		<main className="flex flex-col items-center justify-between min-h-screen p-24">
 			<h1 className="text-4xl font-bold">Welcome to the Web App</h1>
-			<div className="flex gap-4">
+			<div className="flex flex-1 gap-4 items-center justify-center">
 				<Link
 					href="/auth/login"
-					className="px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+					className="px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 block"
 				>
 					Go to Login Page
 				</Link>
 				<Link
 					href="/auth/signup"
-					className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700"
+					className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700 block"
 				>
 					Go to Signup Page
 				</Link>

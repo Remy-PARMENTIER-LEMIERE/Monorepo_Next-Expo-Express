@@ -43,10 +43,20 @@ export default function ForgotPasswordForm() {
 	return (
 		<form className="max-w-sm w-full space-y-4" onSubmit={handleSubmit}>
 			<div className="flex flex-col gap-2">
-				<label htmlFor="email">Email</label>
-				<input type="email" id="email" name="email" required className="" />
+				<label htmlFor="email">Email:</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					required
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<button type="submit" disabled={isPending} className="">
+			<button
+				type="submit"
+				disabled={isPending}
+				className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700 block"
+			>
 				Envoyer
 			</button>
 		</form>

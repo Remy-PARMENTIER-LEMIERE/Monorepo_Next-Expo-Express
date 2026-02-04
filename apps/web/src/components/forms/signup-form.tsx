@@ -46,20 +46,45 @@ export default function SignupForm() {
 	};
 
 	return (
-		<form onSubmit={signUp}>
-			<div>
-				<label htmlFor="name">Name</label>
-				<input type="text" id="name" name="name" />
+		<form onSubmit={signUp} className="flex flex-col gap-4">
+			<div className="flex flex-col gap-2">
+				<label htmlFor="name" className="cursor-pointer">
+					Name
+				</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<div>
-				<label htmlFor="email">Email:</label>
-				<input type="email" id="email" name="email" />
+			<div className="flex flex-col gap-2">
+				<label htmlFor="email" className="cursor-pointer">
+					Email:
+				</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<div>
-				<label htmlFor="password">Password:</label>
-				<input type="password" id="password" name="password" />
+			<div className="flex flex-col gap-2">
+				<label htmlFor="password" className="cursor-pointer">
+					Password:
+				</label>
+				<input
+					type="password"
+					id="password"
+					name="password"
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<button type="submit" disabled={isPending}>
+			<button
+				type="submit"
+				disabled={isPending}
+				className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700 block"
+			>
 				Sign Up
 			</button>
 		</form>

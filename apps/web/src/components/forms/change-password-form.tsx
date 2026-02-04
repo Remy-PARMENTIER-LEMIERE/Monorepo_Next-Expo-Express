@@ -8,7 +8,7 @@ export default function ChangePasswordForm() {
 	const [isPending, setIsPending] = useState(false);
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		// Handle password change logic here
+
 		const formData = new FormData(event.currentTarget);
 		const currentPassword = formData.get("current-password") as string;
 		const newPassword = formData.get("new-password") as string;
@@ -43,38 +43,52 @@ export default function ChangePasswordForm() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div>
+		<form onSubmit={handleSubmit} className="flex flex-col gap-4">
+			<div className="flex flex-col gap-2">
 				<label htmlFor="current-password">Current Password</label>
 				<input
 					type="password"
 					id="current-password"
 					name="current-password"
 					required
+					className="border-gray-400 border-2 rounded px-4 py-2"
 				/>
 			</div>
-			<div>
+			<div className="flex flex-col gap-2">
 				<label htmlFor="new-password">New Password</label>
-				<input type="password" id="new-password" name="new-password" required />
+				<input
+					type="password"
+					id="new-password"
+					name="new-password"
+					required
+					className="border-gray-400 border-2 rounded px-4 py-2"
+				/>
 			</div>
-			<div>
+			<div className="flex flex-col gap-2">
 				<label htmlFor="confirm-password">Confirm Password</label>
 				<input
 					type="password"
 					id="confirm-password"
 					name="confirm-password"
 					required
+					className="border-gray-400 border-2 rounded px-4 py-2"
 				/>
 			</div>
-			<div>
+			<div className="flex gap-2">
 				<input
 					type="checkbox"
 					id="revoke-other-sessions"
 					name="revoke-other-sessions"
 				/>
-				<label htmlFor="revoke-other-sessions">Disconnect Other Sessions</label>
+				<label htmlFor="revoke-other-sessions" className="cursor-pointer">
+					Disconnect Other Sessions
+				</label>
 			</div>
-			<button type="submit" disabled={isPending}>
+			<button
+				type="submit"
+				disabled={isPending}
+				className="px-4 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-700 block"
+			>
 				Change Password
 			</button>
 		</form>

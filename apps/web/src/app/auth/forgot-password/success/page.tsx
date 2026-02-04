@@ -1,8 +1,8 @@
 export default function ForgotPasswordSuccessPage() {
 	return (
-		<main className="px-8 py-16 container mx-auto max-w-5xl space-y-8">
-			<h1 className="text-3xl font-bold">Email sent</h1>
-			<section className="space-y-8">
+		<main className="flex flex-col items-center justify-between min-h-screen p-24">
+			<h1 className="text-4xl font-bold">Email sent</h1>
+			<section className="flex-1 flex flex-col gap-4 items-center justify-center">
 				<p className="text-foreground">
 					Please check your email for a link to reset your password.
 				</p>
