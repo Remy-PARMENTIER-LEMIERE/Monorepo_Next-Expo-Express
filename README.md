@@ -65,3 +65,7 @@ Des fichiers `.env.sample` sont fournis pour chaque app. Copie‑les en `.env` e
 - [Tailwind CSS](https://tailwindcss.com/) pour le style
 - [TypeScript](https://www.typescriptlang.org/) pour le typage
 - [Biome](https://biomejs.dev/) pour lint + format
+- [Prisma](https://www.prisma.io/) pour gérer la base de données
+- [Better-Auth](https://www.better-auth.com/) pour l'authentification
+- [Express.js](https://expressjs.com/) pour le backend
+- [Expo/React-Native](https://expo.dev/) pour l'application mobile
