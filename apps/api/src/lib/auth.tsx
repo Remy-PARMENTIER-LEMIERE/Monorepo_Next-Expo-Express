@@ -1,4 +1,4 @@
-// If your Prisma file is located elsewhere, you can change the path
+import { expo } from "@better-auth/expo";
 import { prisma } from "@repo/database";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
@@ -15,7 +15,7 @@ export const auth = betterAuth({
 	trustedOrigins: [
 		String(process.env.CLIENT_URL),
 		String(process.env.APP_URL),
-		String(process.env.MOBILE_ORIGIN),
+		`${process.env.MOBILE_EXPO_SCHEME}://*`,
 	],
 	advanced: {
 		useSecureCookies: process.env.NODE_ENV === "production",
@@ -72,4 +72,5 @@ export const auth = betterAuth({
 		expiresIn: 30 * 24 * 60 * 60, // 30 jours
 		updateAge: 24 * 60 * 60, // Rafraîchissement chaque jour
 	},
+	plugins: [expo()],
 });
