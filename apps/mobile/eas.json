@@ -1,0 +1,44 @@
+{
+	"$schema": "https://eas.expo.dev/schema/eas.json",
+	"cli": {
+		"version": ">= 16.4.0",
+		"appVersionSource": "remote"
+	},
+	"build": {
+		"development": {
+			"developmentClient": true,
+			"distribution": "internal",
+			"ios": {
+				"simulator": true
+			},
+			"android": {
+				"buildType": "apk"
+			}
+		},
+		"development:device": {
+			"developmentClient": true,
+			"distribution": "internal",
+			"ios": {
+				"simulator": false
+			},
+			"android": {
+				"buildType": "apk"
+			}
+		},
+		"preview": {
+			"distribution": "internal",
+			"ios": {
+				"simulator": true
+			},
+			"android": {
+				"buildType": "apk"
+			}
+		},
+		"production": {
+			"autoIncrement": true
+		}
+	},
+	"submit": {
+		"production": {}
+	}
+}

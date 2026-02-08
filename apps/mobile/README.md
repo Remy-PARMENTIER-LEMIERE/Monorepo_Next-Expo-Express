@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Application Mobile (Expo)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Application React Native avec Expo, utilisant le routing basé sur les fichiers (expo-router).
 
-## Get started
+## Prérequis
 
-1. Install dependencies
-
+1. **Compte Expo** : Crée un compte sur [expo.dev](https://expo.dev/signup) si ce n'est pas déjà fait
+2. **Connexion EAS** : Depuis la racine du monorepo, connecte-toi :
    ```bash
-   npm install
+   pnpm exec eas login
    ```
 
-2. Start the app
+## Démarrage rapide
 
+### Première utilisation
+
+1. **Installe les dépendances** (depuis la racine du monorepo) :
    ```bash
-   npx expo start
+   pnpm install
    ```
 
-In the output, you'll find options to open the app in a
+2. **Crée ton premier development build** :
+   ```bash
+   pnpm build:dev
+   ```
+   > Le build se fait dans le cloud Expo (5-15 min). Tu recevras un lien pour télécharger l'APK/app.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+3. **Installe le build** sur ton appareil ou émulateur
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+4. **Lance le serveur de développement** :
+   ```bash
+   pnpm dev
+   ```
 
-## Get a fresh project
+5. **Ouvre l'app** et scanne le QR code
 
-When you're ready, run:
+### Utilisation quotidienne
+
+Une fois le build installé, tu n'as besoin que de :
 
 ```bash
-npm run reset-project
+pnpm dev
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Toutes tes modifications de code sont reflétées **instantanément** grâce au Fast Refresh.
 
-## Learn more
+## Scripts disponibles
 
-To learn more about developing your project with Expo, look at the following resources:
+| Script | Description |
+|--------|-------------|
+| `pnpm dev` | Démarre le serveur Metro avec dev-client |
+| `pnpm android` | Démarre sur Android avec dev-client |
+| `pnpm ios` | Démarre sur iOS avec dev-client |
+| `pnpm web` | Démarre la version web |
+| `pnpm build:dev` | Build de développement (Android + iOS) |
+| `pnpm build:dev:android` | Build de développement Android |
+| `pnpm build:dev:ios` | Build de développement iOS |
+| `pnpm build:preview` | Build de preview (test interne) |
+| `pnpm build:production` | Build de production |
+| `pnpm lint` | Vérifie le code avec Biome |
+| `pnpm lint:fix` | Corrige automatiquement les erreurs |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Quand rebuilder ?
 
-## Join the community
+Tu dois recréer un development build **uniquement** si :
 
-Join our community of developers creating universal apps.
+- Tu ajoutes une nouvelle dépendance avec du **code natif**
+- Tu modifies les **plugins Expo** dans `app.json`
+- Tu changes la configuration native (permissions, icônes, splash screen, etc.)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> Les modifications de code TypeScript/JavaScript ne nécessitent **jamais** de rebuild.
+
+## Structure du projet
+
+```
+app/                  # Routes (file-based routing)
+├── (auth)/           # Routes d'authentification
+├── (protected)/      # Routes protégées
+└── _layout.tsx       # Layout racine
+assets/               # Images et ressources
+components/           # Composants réutilisables
+constants/            # Constantes (thème, etc.)
+hooks/                # Hooks personnalisés
+lib/                  # Utilitaires (auth, etc.)
+```
+
+## Ressources
+
+- [Documentation Expo](https://docs.expo.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
+- [EAS Build](https://docs.expo.dev/build/introduction/)
+- [Development Builds](https://docs.expo.dev/develop/development-builds/introduction/)
