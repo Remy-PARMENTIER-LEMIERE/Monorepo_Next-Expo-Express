@@ -7,7 +7,7 @@ export default function ProtectedLayout() {
 
 	useEffect(() => {
 		if (!isPending && !user) {
-			router.replace("/login");
+			router.replace("/(auth)/login");
 		}
 	}, [isPending, user]);
 

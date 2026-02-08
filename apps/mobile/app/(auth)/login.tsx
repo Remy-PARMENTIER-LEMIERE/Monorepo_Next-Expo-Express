@@ -1,5 +1,6 @@
+import { Link } from "expo-router";
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { authClient } from "@/lib/auth-client";
 
 export default function LoginScreen() {
@@ -33,12 +34,21 @@ export default function LoginScreen() {
 				onChangeText={setPassword}
 				style={styles.input}
 			/>
+			<Link href="/(auth)/forgot-password" style={styles.link}>
+				Forgot password?
+			</Link>
 			<Button
 				title={isPending ? "Logging in..." : "Login"}
 				onPress={handleLogin}
 				disabled={isPending}
 				color="blue"
 			/>
+			<Text style={styles.register}>
+				Don't have an account?{" "}
+				<Link href="/(auth)/signup" style={styles.link}>
+					Register
+				</Link>
+			</Text>
 		</View>
 	);
 }
@@ -58,4 +68,8 @@ const styles = StyleSheet.create({
 		marginBottom: 12,
 		paddingHorizontal: 8,
 	},
+	register: {
+		marginTop: 16,
+	},
+	link: { color: "blue", marginBottom: 12 },
 });

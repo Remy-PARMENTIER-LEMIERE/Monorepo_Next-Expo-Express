@@ -1,5 +1,6 @@
+import { Link } from "expo-router";
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { authClient } from "@/lib/auth-client";
 
 export default function SignUpScreen() {
@@ -46,6 +47,12 @@ export default function SignUpScreen() {
 				disabled={isPending}
 				color="blue"
 			/>
+			<Text style={styles.login}>
+				Already have an account?{" "}
+				<Link href="/(auth)/login" style={styles.link}>
+					Login
+				</Link>
+			</Text>
 		</View>
 	);
 }
@@ -65,4 +72,8 @@ const styles = StyleSheet.create({
 		marginBottom: 12,
 		paddingHorizontal: 8,
 	},
+	login: {
+		marginTop: 16,
+	},
+	link: { color: "blue" },
 });
