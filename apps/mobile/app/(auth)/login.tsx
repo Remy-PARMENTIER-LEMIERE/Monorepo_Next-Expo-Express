@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import OAuthButton from "@/components/oauth-button";
 import { authClient } from "@/lib/auth-client";
 
 export default function LoginScreen() {
@@ -43,6 +44,10 @@ export default function LoginScreen() {
 				disabled={isPending}
 				color="blue"
 			/>
+			<Text>Social Providers:</Text>
+			<View>
+				<OAuthButton provider="google" />
+			</View>
 			<Text style={styles.register}>
 				Don't have an account?{" "}
 				<Link href="/(auth)/signup" style={styles.link}>
@@ -59,6 +64,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		padding: 16,
+		gap: 8,
 	},
 	input: {
 		width: "100%",
@@ -72,4 +78,11 @@ const styles = StyleSheet.create({
 		marginTop: 16,
 	},
 	link: { color: "blue", marginBottom: 12 },
+	providersList: {
+		marginTop: 16,
+		flexDirection: "row",
+		justifyContent: "center",
+		gap: 8,
+		flexWrap: "wrap",
+	},
 });
